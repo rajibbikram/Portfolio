@@ -1,3 +1,5 @@
+export const runtime = 'edge'; // Required by Cloudflare
+
 import nodemailer from "nodemailer";
 
 export async function POST(req) {
@@ -5,12 +7,12 @@ export async function POST(req) {
     const data = await req.json();
     const { name, email, message } = data;
 
-    // create transporter
+    // create transporter (⚠️ Nodemailer won't run on Edge runtime)
     const transporter = nodemailer.createTransport({
-      service: "Gmail", // or another email service
+      service: "Gmail",
       auth: {
-        user: process.env.EMAIL_USER, // your email
-        pass: process.env.EMAIL_PASS, // your app password
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
