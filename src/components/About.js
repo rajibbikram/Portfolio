@@ -3,6 +3,19 @@ import Profile from "../image/profile.jpg";
 import styles from "../css/About.css";
 
 const About = () => {
+
+    const skills = [
+        "React.js",
+        "Next.js",
+        "JavaScript (ES6+)",
+        "HTML5 & CSS3",
+        "Bootstrap / Tailwind CSS",
+        "SCSS",
+        "Responsive Design",
+        "Git & GitHub"
+    ];
+
+
     return (
         <section className="about" id="about">
             <div className="container ">
@@ -20,17 +33,22 @@ const About = () => {
                     <h2 className="heading"><strong>Rajib Bikram Shah</strong></h2>
                     <h2 className="heading2">And I'am a <span className='dev'>Frontend Developer |</span></h2>
                     <p className="description">
-                        
-                         Passionate frontend developer specializing in React.js and Next.js. I love building modern, responsive, and user-friendly web applications.
-                    </p>
-                    <h3 className="subtitle">Skills</h3>
-                    <ul className="skills">
-                        <li>React.js</li>
-                        <li>Next.js</li>
-                        <li>JavaScript (ES6+)</li>
-                        <li>HTML5 & CSS3</li>
-                        <li>Tailwind CSS / SCSS</li>
-                    </ul>
+
+                        Hi! I'm Rajib Bikram Shah, a frontend developer who enjoys creating clean and responsive websites. I love working on user-friendly designs and making the web look and work better.
+                      
+                      </p>  <div className="skills-container">
+                            <h3 className="subtitle">Skills</h3>
+                            <ul className="skills">
+                                {
+                                    skills.map((skill, index) => (
+                                        <li key={index}>{skill}</li>
+                                    ))
+                                }
+
+                            </ul>
+
+
+                        </div>
                 </div>
             </div>
         </section>

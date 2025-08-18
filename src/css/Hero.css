@@ -1,66 +1,161 @@
+/* Hero Section */
 .hero {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  height: 90vh;
-  background: linear-gradient(to right, #1f2937, #374151);
-  color: white;
+  align-items: center;
+  height: 110vh;
+  padding: 2rem;
   text-align: center;
-  padding: 0 1rem;
-
-  height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: white;
+  box-sizing: border-box;
 }
 
-.content {
+/* Content */
+.hero .content {
   max-width: 700px;
+  margin-top: 3rem;
 }
 
-.title {
+.hero .title {
   font-size: 3rem;
-  font-weight: bold;
+  font-weight: 700;
   margin-bottom: 1rem;
+  background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.subtitle {
+.hero .subtitle {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  color: #d1d5db;
-  /* light gray */
+  color: #c0c0c0;
 }
 
-.description {
+.hero .description {
   font-size: 1.1rem;
   margin-bottom: 2rem;
   line-height: 1.6;
-  color: #e5e7eb;
 }
 
-.button {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  background-color: #3b82f6;
-  /* blue */
+.hero .button {
+  background: #e94560;
   color: white;
-  font-weight: bold;
+  padding: 0.8rem 1.5rem;
+  border-radius: 30px;
   text-decoration: none;
-  border-radius: 0.5rem;
-  transition: background 0.3s;
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
-.button:hover {
-  background-color: #2563eb;
+.hero .button:hover {
+  background: #ff2e63;
 }
 
+/* Grid layout for Highlights + Education */
+.hero .hero-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 900px;
+  justify-items: center;
+  align-items: start;
+}
+
+/* Highlights */
+.hero .highlights {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero .highlight {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem 2rem;
+  border-radius: 15px;
+  min-width: 120px;
+  transition: all 0.3s ease;
+}
+
+.hero .highlight:hover {
+  background: rgba(59, 130, 246, 0.2);
+  transform: translateY(-3px);
+}
+
+.hero .highlight h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.3rem;
+  color: #3b82f6;
+}
+
+.hero .highlight p {
+  font-size: 0.95rem;
+  color: #c0c0c0;
+}
+
+/* Education */
+.hero .education {
+  text-align: center;
+}
+
+.hero .education .section-title {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: #3b82f6;
+}
+
+.hero .education p {
+  font-size: 0.95rem;
+  color: #c0c0c0;
+  margin: 0.2rem 0;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-  .title {
-    font-size: 2.25rem;
+  .hero {
+    padding: 0.5rem;
   }
 
-  .subtitle {
-    font-size: 1.25rem;
+  .hero .title {
+    margin-top: 1.3em;
+    font-size: 2.2rem;
   }
 
-  .description {
+  .hero .subtitle {
+    font-size: 1.2rem;
+  }
+
+  .hero .description {
     font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero .highlights {
+    gap: 1rem;
+  }
+
+  .hero .highlight {
+    min-width: auto;
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .hero .highlight h2 {
+    font-size: 1.5rem;
+  }
+
+  .hero .highlight p {
+    font-size: 0.9rem;
+  }
+
+  .hero .education .section-title {
+    font-size: 1.5rem;
+  }
+
+  .hero .education p {
+    font-size: 0.9rem;
   }
 }
