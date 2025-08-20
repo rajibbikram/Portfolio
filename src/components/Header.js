@@ -33,22 +33,18 @@ const Header = () => {
       </div>
 
       {/* Sidebar */}
-      <div
-        className={`fixed top-0 left-0 h-full w-64 bg-gray-800 text-white transform ${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-300 ease-in-out z-50`}
-      >
-        <div className="flex justify-between items-center p-4 border-b border-gray-700">
-          <h2 className="text-xl font-bold">Menu</h2>
+      <div className={`sidebar ${sidebarOpen ? "open" : ""}`}>
+        <div className="sidebar-header">
+          <h2 className="text-xl font-bold">MENU</h2>
           <span className="cursor-pointer" onClick={toggleSidebar}>
             <CloseIcon />
           </span>
         </div>
-        <ul className="p-4 flex flex-col gap-4">
-          <li><Link href="#hero" onClick={toggleSidebar}>Home</Link></li>
-          <li><Link href="#about" onClick={toggleSidebar}>About</Link></li>
-          <li><Link href="#projects" onClick={toggleSidebar}>Projects</Link></li>
-          <li><Link href="#contact" onClick={toggleSidebar}>Contact</Link></li>
+        <ul className="sidebar-menu">
+          <li><Link href="#hero" onClick={toggleSidebar}>HOME</Link></li>
+          <li><Link href="#about" onClick={toggleSidebar}>ABOUT</Link></li>
+          <li><Link href="#projects" onClick={toggleSidebar}>PROJECTS</Link></li>
+          <li><Link href="#contact" onClick={toggleSidebar}>CONTACT</Link></li>
         </ul>
       </div>
 

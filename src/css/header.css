@@ -229,15 +229,69 @@ nav a.active::after {
 
 @media (max-width: 768px) {
 
+  /* Sidebar.css */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 45vh;
+    /* 64 in Tailwind = 16rem */
+    background-color: #1f2937;
+    /* bg-gray-800 */
+    color: white;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 50;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #374151;
+  }
+
+  .sidebar-menu {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    gap: 2rem;
+    font-size: 2.2rem;
+  
+  }
+  li{
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .sidebar-menu li a {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  header{
+
+    height: 70px;
+    padding: 20px 20px;
+  }
   .firstdiv {
     display: flex;
-    
-    align-items: center;
+    justify-content: space-between;
     gap: 1rem !important;
   }
 
   .cursor-pointer {
     display: block;
+    justify-content: end;
+    margin-left: 120px;
   }
 
   .title {
