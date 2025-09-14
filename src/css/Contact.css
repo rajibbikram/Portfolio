@@ -25,39 +25,13 @@
   color: #c0c0c0;
 }
 
-/* Grid Layout */
-.contact-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  max-width: 1000px;
-  margin: 0 auto;
-  align-items: start;
-}
-
-/* Contact Info */
-.contact-info {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  text-align: left;
-}
-
-.contact-info .info-item h3 {
-  font-size: 1.2rem;
-  color: #3b82f6;
-  margin-bottom: 0.3rem;
-}
-
-.contact-info .info-item p {
-  color: #c0c0c0;
-}
-
 /* Contact Form */
 .contact-form form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .contact-form input,
@@ -68,6 +42,13 @@
   outline: none;
   font-size: 1rem;
   resize: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #c0c0c0;
 }
 
 .contact-form button {
@@ -85,23 +66,11 @@
   background: #ff2e63;
 }
 
-/* Social Media Links */
-.social-links {
-  display: flex;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-  justify-content: flex-start;
-}
-
-.social-links a {
-  color: white;
-  font-size: 1.5rem;
-  transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.social-links a:hover {
-  transform: translateY(-3px);
-  color: #3b82f6;
+/* Status Message */
+.contact-status {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #00ff99;
 }
 
 /* Responsive */
@@ -112,9 +81,5 @@
 
   .contact-subtitle {
     font-size: 1rem;
-  }
-
-  .contact-grid {
-    grid-template-columns: 1fr;
   }
 }
