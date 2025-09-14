@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Profile from "../../public/image/profile.jpg";
+import Profile from "../../public/image/profile.png";
 import styles from "../css/About.css";
 
 const About = () => {
