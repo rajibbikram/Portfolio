@@ -23,11 +23,16 @@ export default function Contact() {
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "Cache-Control": "no-store" // avoid caching issues on Cloudflare
+        },
         body: JSON.stringify(formData),
       });
 
-      if (res.ok) {
+      const data = await res.json();
+
+      if (res.ok && data.success) {
         setStatus("Message sent successfully ✅");
         setFormData({ name: "", email: "", message: "" });
       } else {
@@ -43,7 +48,6 @@ export default function Contact() {
       <h1 className="contact-title">Contact Us</h1>
       <p className="contact-subtitle">We’d love to hear from you. Fill out the form below!</p>
 
-      {/* Contact Form */}
       <div className="contact-form">
         <form onSubmit={handleSubmit}>
           <input
@@ -73,18 +77,17 @@ export default function Contact() {
           <button type="submit">Send Message</button>
         </form>
       </div>
+
       {status && <p className="contact-status">{status}</p>}
 
-      {/* Contact Info Section */}
       <div className="contact-info">
         <h2>Get in Touch</h2>
-        <p><FaEnvelope /> Gmail: <a href="mailto:yourname@gmail.com">shahrajib278@gmail.com</a></p>
-        <p><FaPhone /> Phone: <a href="tel:+977-9812345678">+977-9765347443</a></p>
+        <p><FaEnvelope /> Gmail: <a href="mailto:shahrajib278@gmail.com">shahrajib278@gmail.com</a></p>
+        <p><FaPhone /> Phone: <a href="tel:+977-9765347443">+977-9765347443</a></p>
 
         <div className="social-links">
           <a href="https://www.facebook.com/rajib.thakure" target="_blank" rel="noreferrer"><FaFacebook /></a>
-          <a href="https://www.instagram.com/rajib.thakure?igsh=MTVzaXZhcWo4czc4aA==" target="_blank" rel="noreferrer"><FaInstagram /></a>
-      
+          <a href="https://www.instagram.com/rajib.thakure" target="_blank" rel="noreferrer"><FaInstagram /></a>
           <a href="https://www.linkedin.com/in/rajib-bikram-shah-55b81326a" target="_blank" rel="noreferrer"><FaLinkedin /></a>
         </div>
       </div>
