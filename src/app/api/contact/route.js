@@ -1,7 +1,8 @@
 import { Resend } from "resend";
 
-export const runtime = "edge"; // Required for Cloudflare Pages
+export const runtime = "edge"; // Required for Cloudflare Pages Edge API
 
+// Use ENV variable for API key
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req) {
@@ -10,7 +11,7 @@ export async function POST(req) {
 
     // Send email via Resend
     await resend.emails.send({
-      from: "Contact Form <onboarding@resend.dev>", // must be a verified sender in Resend
+      from: "Contact Form <onboarding@resend.dev>", // verified sender in Resend
       to: process.env.EMAIL_USER, // your email to receive messages
       subject: `📩 New Contact Message from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
