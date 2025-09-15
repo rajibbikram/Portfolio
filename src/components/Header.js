@@ -1,19 +1,53 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../css/header.css";
 import ViewSidebarIcon from '@mui/icons-material/ViewSidebar';
 import CloseIcon from '@mui/icons-material/Close';
 
 const Header = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const controlHeader = () => {
+      if (typeof window !== 'undefined') {
+        const currentScrollY = window.scrollY;
+        
+        // Always show header when at the top of the page
+        if (currentScrollY === 0) {
+          setVisible(true);
+        } 
+        // Scrolling down
+        else if (currentScrollY > lastScrollY && visible) {
+          setVisible(false);
+        } 
+        // Scrolling up
+        else if (currentScrollY < lastScrollY && !visible) {
+          setVisible(true);
+        }
+        
+        setLastScrollY(currentScrollY);
+      }
+    };
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', controlHeader, { passive: true });
+      return () => window.removeEventListener('scroll', controlHeader);
+    }
+  }, [lastScrollY, visible]);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
   return (
-    <header className="bg-gray-800 text-white p-4 sticky top-0 z-50">
+    <header 
+    className={`bg-gray-800 text-white p-4 fixed w-full z-50 transition-transform duration-300 ${
+      visible ? 'translate-y-0' : '-translate-y-full'
+    }`}
+  >
       <div className="container mx-auto flex justify-between items-center">
         <div className="firstdiv text-xl font-bold flex items-center gap-4">
           <Link href="/">Rajib Bikram Shah</Link>

@@ -19,13 +19,13 @@ const education = [
     degree: 'Bachelor of Computer Applications (BCA)',
     status: '2022 - 2025',
     institution: 'Tribhuvan University, Nepal',
-    description: 'Kirtipur, Kathmandu'
+    description: 'Specialized in Web Development and Software Engineering'
   },
   {
     degree: 'High School',
     status: '2019 - 2021',
-    institution: 'Bagmati Modern College',
-    description: 'Sukhedahara,Kathmandu'
+    institution: 'National School of Sciences, Nepal',
+    description: 'Major in Computer Science'
   }
 ];
 
@@ -47,12 +47,12 @@ const Hero = () => {
   }, [controls, isInView]);
 
   return (
-    <section id="hero" className="hero min-h-screen flex items-center justify-center py-16 px-6 sm:px-8 lg:px-12 text-white relative overflow-hidden">
+    <section id="hero" className="hero min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 text-white relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 -left-10 w-72 h-72 bg-purple-400/5 rounded-full mix-blend-soft-light filter blur-2xl opacity-80 animate-blob"></div>
-        <div className="absolute top-1/2 -right-10 w-72 h-72 bg-blue-400/5 rounded-full mix-blend-soft-light filter blur-2xl opacity-80 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-1/4 left-1/2 w-72 h-72 bg-pink-400/5 rounded-full mix-blend-soft-light filter blur-2xl opacity-80 animate-blob animation-delay-4000"></div>
+        <div className="absolute top-1/4 -left-10 w-72 h-72 bg-purple-500/10 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+        <div className="absolute top-1/2 -right-10 w-72 h-72 bg-blue-500/10 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div className="absolute bottom-1/4 left-1/2 w-72 h-72 bg-pink-500/10 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
       </div>
 
       <div className="max-w-6xl mx-auto w-full relative z-10">
@@ -62,9 +62,9 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <motion.h1 
-              className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 gradient-text"
+              className="text-5xl sm:text-6xl md:text-7xl font-bold mb-8 gradient-text"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -73,7 +73,7 @@ const Hero = () => {
             </motion.h1>
             
             <motion.p 
-              className="text-xl sm:text-2xl text-gray-200 mb-6 max-w-3xl mx-auto leading-relaxed"
+              className="text-xl sm:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
@@ -82,7 +82,7 @@ const Hero = () => {
             </motion.p>
             
             <motion.p 
-              className="text-gray-300 mb-10 max-w-2xl mx-auto text-lg leading-relaxed"
+              className="text-gray-300 mb-8 max-w-2xl mx-auto text-lg leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
@@ -92,7 +92,7 @@ const Hero = () => {
 
             {/* Tech Stack */}
             <motion.div 
-              className="tech-stack justify-center mb-10"
+              className="tech-stack justify-center mb-8"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.8 }}
@@ -113,7 +113,7 @@ const Hero = () => {
             >
               <a 
                 href="#projects" 
-                className="button inline-flex items-center px-10 py-10 text-lg font-medium rounded-full transition-all duration-400 group"
+                className="button inline-flex items-center px-10 py-4 text-lg font-medium rounded-full transition-all duration-400 group"
               >
                 View My Work
                 <svg className="w-5 h-5 ml-3 transform group-hover:translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -126,14 +126,14 @@ const Hero = () => {
 
         {/* Stats & Education Grid */}
         <motion.div 
-          className="grid md:grid-cols-2 gap-8 mt-16"
+          className="grid md:grid-cols-2 gap-8 mt-20"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           ref={ref}
         >
           {/* Stats */}
-          <div className="stat-card p-8 sm:p-10 rounded-2xl">
+          <div className="stat-card p-8 rounded-2xl">
             <h2 className="text-2xl font-bold mb-6 gradient-text inline-block">My Skills</h2>
             <div className="space-y-6 mt-8">
               {stats.map((stat, index) => (
@@ -167,7 +167,7 @@ const Hero = () => {
           </div>
 
           {/* Education */}
-          <div className="education-card p-8 sm:p-10 rounded-2xl">
+          <div className="education-card p-8 rounded-2xl">
             <div className="flex items-center mb-6">
               <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center mr-4">
                 <FaGraduationCap className="text-2xl text-blue-400" />
