@@ -74,15 +74,16 @@ const About = () => {
             description: "Recognized for outstanding contributions to open-source projects",
             icon: <FaTrophy className="achievement-icon" />,
             type: "achievement"
-        },
-        {
-            title: "Hackathon Winner",
-            issuer: "Tech Innovators 2024",
-            date: "2024",
-            description: "1st place in the annual web development hackathon",
-            icon: <FaMedal className="achievement-icon" />,
-            type: "achievement"
-        }
+         }
+        //,
+        // {
+        //     title: "Hackathon Winner",
+        //     issuer: "Tech Innovators 2024",
+        //     date: "2024",
+        //     description: "1st place in the annual web development hackathon",
+        //     icon: <FaMedal className="achievement-icon" />,
+        //     type: "achievement"
+        // }
     ];
 
     const containerVariants = {
