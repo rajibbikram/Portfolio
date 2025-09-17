@@ -47,24 +47,24 @@ const Hero = () => {
   }, [controls, isInView]);
 
   return (
-    <section id="hero" className="hero min-h-screen flex items-center justify-center py-16 px-6 sm:px-8 lg:px-12 text-white relative overflow-hidden">
+    <section id="hero" className="hero">
       {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 -left-10 w-72 h-72 bg-purple-400/5 rounded-full mix-blend-soft-light filter blur-2xl opacity-80 animate-blob"></div>
-        <div className="absolute top-1/2 -right-10 w-72 h-72 bg-blue-400/5 rounded-full mix-blend-soft-light filter blur-2xl opacity-80 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-1/4 left-1/2 w-72 h-72 bg-pink-400/5 rounded-full mix-blend-soft-light filter blur-2xl opacity-80 animate-blob animation-delay-4000"></div>
+      <div className="hero-background">
+        <div className="blob blob-1"></div>
+        <div className="blob blob-2"></div>
+        <div className="blob blob-3"></div>
       </div>
 
-      <div className="max-w-6xl mx-auto w-full relative z-10">
+      <div className="hero-container">
         <motion.div 
           className="hero-content"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="text-center mb-16">
+          <div className="hero-intro">
             <motion.h1 
-              className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 gradient-text"
+              className="hero-title"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -73,16 +73,16 @@ const Hero = () => {
             </motion.h1>
             
             <motion.p 
-              className="text-xl sm:text-2xl text-gray-200 mb-6 max-w-3xl mx-auto leading-relaxed"
+              className="hero-subtitle"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              A Passionate <span className="text-blue-300 font-medium">Frontend Developer</span> & <span className="text-purple-300 font-medium">Designer</span>
+              A Passionate <span className="highlight-blue">Frontend Developer</span> & <span className="highlight-purple">Designer</span>
             </motion.p>
             
             <motion.p 
-              className="text-gray-300 mb-10 max-w-2xl mx-auto text-lg leading-relaxed"
+              className="hero-description"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
@@ -92,13 +92,13 @@ const Hero = () => {
 
             {/* Tech Stack */}
             <motion.div 
-              className="tech-stack justify-center mb-10"
+              className="tech-stack"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.8 }}
             >
               {techStack.map((tech, index) => (
-                <span key={index} className="tech-item flex items-center">
+                <span key={index} className="tech-item">
                   {tech.icon}
                   {tech.name}
                 </span>
@@ -106,17 +106,17 @@ const Hero = () => {
             </motion.div>
             
             <motion.div 
-              className="animate-fade-in"
+              className="cta-container"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1 }}
             >
               <a 
                 href="#projects" 
-                className="button inline-flex items-center px-10 py-10 text-lg font-medium rounded-full transition-all duration-400 group"
+                className="cta-button"
               >
                 View My Work
-                <svg className="w-5 h-5 ml-3 transform group-hover:translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <svg className="cta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                 </svg>
               </a>
@@ -126,32 +126,32 @@ const Hero = () => {
 
         {/* Stats & Education Grid */}
         <motion.div 
-          className="grid md:grid-cols-2 gap-8 mt-16"
+          className="content-grid"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           ref={ref}
         >
           {/* Stats */}
-          <div className="stat-card p-8 sm:p-10 rounded-2xl">
-            <h2 className="text-2xl font-bold mb-6 gradient-text inline-block">My Skills</h2>
-            <div className="space-y-6 mt-8">
+          <div className="stat-card">
+            <h2 className="section-title">My Skills</h2>
+            <div className="stats-container">
               {stats.map((stat, index) => (
                 <motion.div 
                   key={stat.name}
-                  className="space-y-2"
+                  className="stat-item"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.2 * index }}
                 >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2">
-                      <div className={`w-10 h-10 rounded-lg bg-${stat.color}-500/10 flex items-center justify-center`}>
+                  <div className="stat-header">
+                    <div className="stat-icon-container">
+                      <div className={`stat-icon stat-icon-${stat.color}`}>
                         {stat.icon}
                       </div>
-                      <span className="text-gray-200 font-medium">{stat.name}</span>
+                      <span className="stat-name">{stat.name}</span>
                     </div>
-                    <span className="text-gray-300">{stat.value}{stat.name !== 'Satisfaction' ? '+' : '%'}</span>
+                    <span className="stat-value">{stat.value}{stat.name !== 'Satisfaction' ? '+' : '%'}</span>
                   </div>
                   <div className="progress-bar">
                     <motion.div 
@@ -167,12 +167,12 @@ const Hero = () => {
           </div>
 
           {/* Education */}
-          <div className="education-card p-8 sm:p-10 rounded-2xl">
-            <div className="flex items-center mb-6">
-              <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center mr-4">
-                <FaGraduationCap className="text-2xl text-blue-400" />
+          <div className="education-card">
+            <div className="education-header">
+              <div className="education-icon">
+                <FaGraduationCap className="icon" />
               </div>
-              <h2 className="gradient-text text-2xl font-bold">
+              <h2 className="section-title">
                 Education
               </h2>
             </div>
@@ -185,10 +185,10 @@ const Hero = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.2 * index }}
                 >
-                  <h3 className="font-semibold text-lg text-white">{edu.degree}</h3>
-                  <p className="text-blue-300 text-sm">{edu.status}</p>
-                  <p className="text-gray-300 text-sm mt-1">{edu.institution}</p>
-                  <p className="text-gray-400 text-sm mt-1">{edu.description}</p>
+                  <h3 className="degree">{edu.degree}</h3>
+                  <p className="period">{edu.status}</p>
+                  <p className="institution">{edu.institution}</p>
+                  <p className="location">{edu.description}</p>
                 </motion.div>
               ))}
             </div>

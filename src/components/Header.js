@@ -66,20 +66,50 @@ const Header = () => {
     };
   }, []);
 
-  // Prevent body scroll when menu is open
+  // Prevent body scroll when menu is open and manage focus
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
-      // Focus the first focusable element in the menu
-      const firstFocusable = menuRef.current?.querySelector('button, [href], [tabindex]:not([tabindex="-1"])');
-      firstFocusable?.focus();
+      document.documentElement.classList.add('menu-open');
+      
+      // Focus the close button when menu opens
+      const closeButton = menuRef.current?.querySelector('.sidebar-close');
+      closeButton?.focus();
+      
+      // Trap focus inside the sidebar when open
+      const handleTabKey = (e) => {
+        if (e.key === 'Tab') {
+          const focusableElements = menuRef.current?.querySelectorAll(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+          );
+          
+          if (focusableElements?.length) {
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+            
+            if (e.shiftKey && document.activeElement === firstElement) {
+              e.preventDefault();
+              lastElement.focus();
+            } else if (!e.shiftKey && document.activeElement === lastElement) {
+              e.preventDefault();
+              firstElement.focus();
+            }
+          }
+        } else if (e.key === 'Escape') {
+          setIsMenuOpen(false);
+        }
+      };
+      
+      document.addEventListener('keydown', handleTabKey);
+      return () => {
+        document.removeEventListener('keydown', handleTabKey);
+        document.body.style.overflow = 'unset';
+        document.documentElement.classList.remove('menu-open');
+      };
     } else {
       document.body.style.overflow = 'unset';
+      document.documentElement.classList.remove('menu-open');
     }
-
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
   }, [isMenuOpen]);
 
   const toggleMenu = () => {
@@ -92,26 +122,24 @@ const Header = () => {
         ref={headerRef}
         className={`header ${isScrolled ? 'scrolled' : ''}`}
       >
-        <div className="container">
-          <div className="firstdiv">
+        <div className="header-container">
+          <div className="logo-container">
             <Link 
-              href="/" 
-              onClick={() => setIsMenuOpen(false)}
-              aria-label="Home"
+              href="#hero" 
+              className="logo-link"
             >
               Rajib Bikram Shah
             </Link>
           </div>
-
+          
           {/* Desktop Navigation */}
           <nav className="desktop-nav">
-            <ul>
+            <ul className="nav-list">
               {navItems.map((item) => (
-                <li key={item.href}>
+                <li key={item.href} className="nav-item">
                   <Link 
                     href={item.href}
                     className="nav-link"
-                    onClick={() => setIsMenuOpen(false)}
                   >
                     {item.label}
                   </Link>
@@ -119,30 +147,42 @@ const Header = () => {
               ))}
             </ul>
           </nav>
-
+          
           {/* Mobile Menu Button */}
-          <button
-            className="mobile-menu-button"
-            onClick={toggleMenu}
-            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={isMenuOpen}
-            aria-controls="mobile-menu"
-          >
-            {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
-          </button>
+          <div className="mobile-menu-button-container">
+            <button 
+              className="mobile-menu-button"
+              onClick={toggleMenu}
+              aria-label="Toggle menu"
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-menu"
+            >
+              {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
+            </button>
+          </div>
         </div>
       </header>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
       <div 
+        className={`sidebar-overlay ${isMenuOpen ? 'open' : ''}`}
+        onClick={toggleMenu}
+        role="presentation"
+        aria-hidden={!isMenuOpen}
+      />
+
+      {/* Mobile Menu Sidebar */}
+      <aside 
         ref={menuRef}
         id="mobile-menu"
         className={`sidebar ${isMenuOpen ? 'open' : ''}`}
         role="dialog"
         aria-modal="true"
+        aria-label="Main menu"
+        aria-hidden={!isMenuOpen}
       >
         <div className="sidebar-header">
-          <h2>Menu</h2>
+          <h2 id="sidebar-title">Menu</h2>
           <button
             onClick={toggleMenu}
             className="sidebar-close"
@@ -152,13 +192,14 @@ const Header = () => {
           </button>
         </div>
         
-        <nav className="sidebar-nav">
-          <ul>
+        <nav aria-labelledby="sidebar-title" className="sidebar-menu">
+          <ul className="mobile-nav-list">
             {navItems.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
                   onClick={() => setIsMenuOpen(false)}
+                  className="mobile-nav-link"
                 >
                   {item.label}
                 </Link>
@@ -166,16 +207,7 @@ const Header = () => {
             ))}
           </ul>
         </nav>
-      </div>
-
-      {/* Overlay */}
-      {isMenuOpen && (
-        <div 
-          className="overlay open" 
-          onClick={toggleMenu}
-          aria-hidden="true"
-        />
-      )}
+      </aside>
     </>
   );
 };
