@@ -3,6 +3,23 @@ import Link from 'next/link';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import "../css/Project.css";
 
+//image import of Ecomarce project
+import Hero from '../../public/image/ecomarce/hero.png';
+import HomePage from '../../public/image/ecomarce/homepage.png';
+import LoginPage from '../../public/image/ecomarce/loginpage.png';
+import Profile from '../../public/image/ecomarce/profile.png';
+import Review from '../../public/image/ecomarce/rat.png';
+import RegisterPage from '../../public/image/ecomarce/registerpage.png';
+
+//image import of Exam Portal project
+import Aaa from '../../public/image/Exam/aa.jpeg';
+import AddCat from '../../public/image/Exam/addcat.jpeg';
+import Cat from '../../public/image/Exam/cat.jpeg';
+import Heero from '../../public/image/Exam/hero.jpeg';
+import Userpro from '../../public/image/Exam/userpro.jpeg';
+
+
+
 export const projectsData = [
   {
     id: 1,
@@ -12,7 +29,7 @@ export const projectsData = [
     technologies: ["MERN Stack", "React.js", "Node.js", "Express", "MongoDB"],
     github: "https://github.com/rajibbikram/Ecomarce-Web.git",
     demo: "#",
-    images: ["/homepage.png", "/loginpage.png", "/registerpage.png"]
+    images: [Hero, HomePage, LoginPage,Profile,Review,RegisterPage]
   },
   {
     id: 2,
@@ -22,29 +39,9 @@ export const projectsData = [
     technologies: ["React.js", "Java", "Postgres", "Spring Boot", "bootstrap"],
     github: "https://github.com/bikalpcdr/Exam--Portal.git",
     demo: "#",
-    images: ["/homepage.png", "/loginpage.png", "/registerpage.png"]
-  },
-  {
-    id: 3,
-    title: "Portfolio Website",
-    details: "A responsive portfolio website to showcase projects, skills, and experience.",
-    slug: "portfolio",
-    technologies: [ "Next.js", "Tailwind CSS", "React.js", "Node.js"],
-    github: "https://github.com/rajibbikram/Portfolio.git",
-    demo: "#",
-    images: ["/homepage.png", "/loginpage.png", "/registerpage.png"]
+    images: [Heero, Userpro,Cat,AddCat,Aaa]
   }
   ,
-  {
-    id: 4,
-    title: "Digital-Clock ",
-    details: "The Digital Clock Web Page shows the current time in hours, minutes, and seconds. It updates automatically every second using JavaScript and is styled with HTML and CSS. This project is simple, beginner-friendly, and helps learn basic web development.",
-    slug: "digital-clock",
-    technologies: [ "HTML", "CSS", "JavaScript"],
-    github: "https://github.com/rajibbikram/Digital-Clock.git",
-    demo: "#",
-    images: ["/homepage.png", "/loginpage.png", "/registerpage.png"]
-  } ,
   {
     id: 5,
     title: "Plan-Nepal-Travel-and-Tours",

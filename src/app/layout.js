@@ -7,6 +7,11 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 export const metadata = {
   title: "Rajib Bikram Shah Portfolio",
   description: "Generated From Rajib Bikram Shah Portfolio with using Next.js",
+    icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon-32x32.png",
+    apple: "/",
+  },
 };
 
 export default function RootLayout({ children }) {
