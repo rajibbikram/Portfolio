@@ -6,7 +6,7 @@ const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata = {
-  title: "Rajib Bikram Shah Portfolio",
+  title: "rajibbikramshah",
   description: "Generated from Rajib Bikram Shah Portfolio using Next.js",
   icons: {
     icon: "/image/profile.jpg", 
