@@ -241,12 +241,6 @@ const About = () => {
                                         className="view-certificate-btn"
                                         onClick={(e) => handleCertificateClick(cert, e)}
                                         aria-label={`View ${cert.title} certificate`}
-                                        style={{
-                                            position: 'relative',
-                                            zIndex: 10,
-                                            cursor: 'pointer',
-                                            outline: '2px solid red' // Debug style
-                                        }}
                                     >
                                         <FaCertificate className="certificate-icon" />
                                         <span>View Certificate</span>

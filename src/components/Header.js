@@ -118,47 +118,43 @@ const Header = () => {
 
   return (
     <>
-      <header 
+      <header
         ref={headerRef}
-        className={`header ${isScrolled ? 'scrolled' : ''}`}
+        className={`header pill ${isScrolled ? 'scrolled' : ''}`}
       >
-        <div className="header-container">
-          <div className="logo-container">
-            <Link 
-              href="#hero" 
-              className="logo-link"
-            >
+        <div className="floating-pill">
+          <div className="pill-left">
+            <Link href="#hero" className="logo-link">
               Rajib Bikram Shah
             </Link>
+            <span className="logo-tagline">Frontend engineer & UX-focused designer</span>
           </div>
-          
-          {/* Desktop Navigation */}
-          <nav className="desktop-nav">
-            <ul className="nav-list">
+
+          <div className="pill-center">
+            <ul className="nav-pill-list">
               {navItems.map((item) => (
-                <li key={item.href} className="nav-item">
-                  <Link 
-                    href={item.href}
-                    className="nav-link"
-                  >
+                <li key={item.href}>
+                  <Link href={item.href} className="nav-pill-link">
                     {item.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </nav>
-          
-          {/* Mobile Menu Button */}
-          <div className="mobile-menu-button-container">
-            <button 
-              className="mobile-menu-button"
-              onClick={toggleMenu}
-              aria-label="Toggle menu"
-              aria-expanded={isMenuOpen}
-              aria-controls="mobile-menu"
-            >
-              {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
-            </button>
+          </div>
+
+          <div className="pill-right">
+            <a href="#contact" className="cta-link">Get in touch</a>
+            <div className="mobile-menu-button-container">
+              <button
+                className="mobile-menu-button"
+                onClick={toggleMenu}
+                aria-label="Toggle menu"
+                aria-expanded={isMenuOpen}
+                aria-controls="mobile-menu"
+              >
+                {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
+              </button>
+            </div>
           </div>
         </div>
       </header>

@@ -1,40 +1,41 @@
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import Logo from '../../public/image/profile.jpg'
+import { Inter } from 'next/font/google';
+import Script from 'next/script';
+import './globals.css';
+import { ThemeProvider } from '@/components/ThemeProvider';
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+// Load Inter font with multiple weights and styles
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+  weight: ['300', '400', '500', '600', '700'],
+});
 
 export const metadata = {
-  title: "rajibbikramshah",
-  description: "Generated from Rajib Bikram Shah Portfolio using Next.js",
+  title: 'Rajib Bikram Shah - Portfolio',
+  description: 'Professional portfolio of Rajib Bikram Shah - Web Developer & Designer',
   icons: {
-    icon: "/image/profile.jpg",
-    shortcut: "/favicon.png",
-    apple: "/image/profile.jpg"
+    icon: '/image/profile.jpg',
+    shortcut: '/favicon.png',
+    apple: '/image/profile.jpg',
   },
   other: {
-    "google-adsense-account": "ca-pub-5511490636642140",
+    'google-adsense-account': 'ca-pub-5511490636642140',
   },
+  themeColor: '#2563eb',
+  viewport: 'width=device-width, initial-scale=1.0',
 };
-
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} scroll-smooth`}>
       <head>
-
-        <meta
-          name="google-adsense-account"
-          content="ca-pub-5511490636642140"
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="google-adsense-account" content="ca-pub-5511490636642140"
         />
       </head>
-      <body
-        className={`antialiased`}
-        style={{
-          fontFamily: `var(${geistSans.variable}), var(${geistMono.variable}), sans-serif`,
-        }}
-      >
+      <body className="antialiased">
         {children}
 
         <Script

@@ -6,12 +6,12 @@ import { motion, useAnimation, useInView } from 'framer-motion';
 import '../css/Hero.css';
 
 const techStack = [
-  { name: 'React', icon: <FaReact className="inline mr-1" /> },
-  { name: 'Next.js', icon: <FaCode className="inline mr-1" /> },
-  { name: 'Node.js', icon: <FaNodeJs className="inline mr-1" /> },
-  { name: 'MongoDB', icon: <FaDatabase className="inline mr-1" /> },
-  { name: 'Tailwind', icon: <FiCpu className="inline mr-1" /> },
-  { name: 'SQL', icon: <FiDatabase className="inline mr-1" /> },
+  { name: 'React', icon: <FaReact className="inline mr-1" aria-hidden="true" /> },
+  { name: 'Next.js', icon: <FaCode className="inline mr-1" aria-hidden="true" /> },
+  { name: 'Node.js', icon: <FaNodeJs className="inline mr-1" aria-hidden="true" /> },
+  { name: 'MongoDB', icon: <FaDatabase className="inline mr-1" aria-hidden="true" /> },
+  { name: 'Tailwind', icon: <FiCpu className="inline mr-1" aria-hidden="true" /> },
+  { name: 'SQL', icon: <FiDatabase className="inline mr-1" aria-hidden="true" /> },
 ];
 
 const education = [
@@ -47,23 +47,25 @@ const Hero = () => {
   }, [controls, isInView]);
 
   return (
-    <section id="hero" className="hero">
-      {/* Animated Background Elements */}
-      <div className="hero-background">
-        <div className="blob blob-1"></div>
-        <div className="blob blob-2"></div>
-        <div className="blob blob-3"></div>
+    <section id="hero" className="hero" aria-label="Introduction">
+      {/* Animated Background Elements - Reduced motion preference */}
+      <div className="hero-background" aria-hidden="true">
+        <div className="blob blob-1" />
+        <div className="blob blob-2" />
+        <div className="blob blob-3" />
       </div>
 
       <div className="hero-container">
-        <motion.div 
+        <motion.article 
           className="hero-content"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          aria-labelledby="hero-heading"
         >
           <div className="hero-intro">
             <motion.h1 
+              id="hero-heading"
               className="hero-title"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -78,7 +80,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              A Passionate <span className="highlight-blue">Frontend Developer</span> & <span className="highlight-purple">Designer</span>
+              A Passionate <span className="highlight-blue" role="text">Frontend Developer</span> & <span className="highlight-tertiary" role="text">Experience Architect</span>
             </motion.p>
             
             <motion.p 
@@ -98,9 +100,9 @@ const Hero = () => {
               transition={{ duration: 0.6, delay: 0.8 }}
             >
               {techStack.map((tech, index) => (
-                <span key={index} className="tech-item">
-                  {tech.icon}
-                  {tech.name}
+                <span key={index} className="tech-item" aria-label={tech.name}>
+                  <span aria-hidden="true">{tech.icon}</span>
+                  <span>{tech.name}</span>
                 </span>
               ))}
             </motion.div>
@@ -114,15 +116,17 @@ const Hero = () => {
               <a 
                 href="#projects" 
                 className="cta-button"
+                aria-label="View my work"
               >
-                View My Work
-                <svg className="cta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <span>View My Work</span>
+                <svg className="cta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                 </svg>
+                <span className="cta-badge" aria-hidden="true">New</span>
               </a>
             </motion.div>
           </div>
-        </motion.div>
+        </motion.article>
 
         {/* Stats & Education Grid */}
         <motion.div 
@@ -131,10 +135,11 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           ref={ref}
+          aria-label="Skills and education"
         >
           {/* Stats */}
           <div className="stat-card">
-            <h2 className="section-title">My Skills</h2>
+            <h2 className="section-title" id="skills-heading">My Skills</h2>
             <div className="stats-container">
               {stats.map((stat, index) => (
                 <motion.div 
@@ -169,10 +174,10 @@ const Hero = () => {
           {/* Education */}
           <div className="education-card">
             <div className="education-header">
-              <div className="education-icon">
+              <div className="education-icon" aria-hidden="true">
                 <FaGraduationCap className="icon" />
               </div>
-              <h2 className="section-title">
+              <h2 className="section-title" id="education-heading">
                 Education
               </h2>
             </div>
