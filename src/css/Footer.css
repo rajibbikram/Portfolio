@@ -1,0 +1,26 @@
+.site-footer {
+  background: linear-gradient(135deg, rgba(7, 9, 22, 0.9), rgba(15, 23, 42, 0.95));
+  color: rgba(226, 232, 240, 0.8);
+  padding: 2rem 1.25rem;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  z-index: 0;
+}
+
+.footer-content {
+  max-width: 900px;
+  margin: 0 auto;
+  font-size: 0.95rem;
+}
+
+.footer-content p {
+  margin: 0;
+  font-weight: 600;
+}
+
+.footer-content small {
+  display: block;
+  margin-top: 0.5rem;
+  color: rgba(148, 163, 184, 0.9);
+}

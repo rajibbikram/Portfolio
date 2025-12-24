@@ -22,9 +22,17 @@ export const metadata = {
   other: {
     'google-adsense-account': 'ca-pub-5511490636642140',
   },
-  themeColor: '#2563eb',
-  viewport: 'width=device-width, initial-scale=1.0',
 };
+
+export const generateViewport = () => ({
+  viewport: {
+    width: 'device-width',
+    initialScale: 1.0,
+  },
+  metadata: {
+    themeColor: '#2563eb',
+  },
+});
 
 export default function RootLayout({ children }) {
   return (

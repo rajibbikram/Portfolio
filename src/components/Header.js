@@ -1,9 +1,12 @@
 "use client";
-import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import dynamic from 'next/dynamic';
 import "../css/header.css";
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
+
+// Dynamically import icons with no SSR
+const MenuIcon = dynamic(() => import('@mui/icons-material/Menu'), { ssr: false });
+const CloseIcon = dynamic(() => import('@mui/icons-material/Close'), { ssr: false });
 
 const navItems = [
   { href: "#hero", label: "Home" },
@@ -13,20 +16,28 @@ const navItems = [
 ];
 
 const Header = () => {
+  const [isMounted, setIsMounted] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const headerRef = useRef(null);
   const menuRef = useRef(null);
   const lastScrollY = useRef(0);
 
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   // Handle scroll events for header visibility
   useEffect(() => {
+    if (!isMounted) return;
+    
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       const isScrollingDown = currentScrollY > lastScrollY.current && currentScrollY > 100;
-      
+
       setIsScrolled(currentScrollY > 10);
-      
+
       if (headerRef.current) {
         if (isScrollingDown) {
           headerRef.current.style.transform = 'translateY(-100%)';
@@ -34,7 +45,7 @@ const Header = () => {
           headerRef.current.style.transform = 'translateY(0)';
         }
       }
-      
+
       lastScrollY.current = currentScrollY;
     };
 
@@ -44,9 +55,10 @@ const Header = () => {
 
   // Close menu when clicking outside or pressing Escape
   useEffect(() => {
+    if (!isMounted) return;
     const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target) && 
-          headerRef.current && !headerRef.current.contains(event.target)) {
+      if (menuRef.current && !menuRef.current.contains(event.target) &&
+        headerRef.current && !headerRef.current.contains(event.target)) {
         setIsMenuOpen(false);
       }
     };
@@ -59,7 +71,7 @@ const Header = () => {
 
     document.addEventListener('mousedown', handleClickOutside);
     document.addEventListener('keydown', handleEscape);
-    
+
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('keydown', handleEscape);
@@ -68,25 +80,26 @@ const Header = () => {
 
   // Prevent body scroll when menu is open and manage focus
   useEffect(() => {
+    if (!isMounted) return;
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
       document.documentElement.classList.add('menu-open');
-      
+
       // Focus the close button when menu opens
       const closeButton = menuRef.current?.querySelector('.sidebar-close');
       closeButton?.focus();
-      
+
       // Trap focus inside the sidebar when open
       const handleTabKey = (e) => {
         if (e.key === 'Tab') {
           const focusableElements = menuRef.current?.querySelectorAll(
             'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
           );
-          
+
           if (focusableElements?.length) {
             const firstElement = focusableElements[0];
             const lastElement = focusableElements[focusableElements.length - 1];
-            
+
             if (e.shiftKey && document.activeElement === firstElement) {
               e.preventDefault();
               lastElement.focus();
@@ -99,7 +112,7 @@ const Header = () => {
           setIsMenuOpen(false);
         }
       };
-      
+
       document.addEventListener('keydown', handleTabKey);
       return () => {
         document.removeEventListener('keydown', handleTabKey);
@@ -156,19 +169,21 @@ const Header = () => {
               </button>
             </div>
           </div>
+
+          {/* Mobile Menu Overlay */}
+          <div
+            className={`sidebar-overlay ${isMenuOpen ? 'open' : ''}`}
+            onClick={toggleMenu}
+            role="presentation"
+            aria-hidden={!isMenuOpen}
+          />
         </div>
       </header>
 
-      {/* Mobile Menu Overlay */}
-      <div 
-        className={`sidebar-overlay ${isMenuOpen ? 'open' : ''}`}
-        onClick={toggleMenu}
-        role="presentation"
-        aria-hidden={!isMenuOpen}
-      />
+  
 
       {/* Mobile Menu Sidebar */}
-      <aside 
+      <aside
         ref={menuRef}
         id="mobile-menu"
         className={`sidebar ${isMenuOpen ? 'open' : ''}`}
@@ -187,7 +202,7 @@ const Header = () => {
             <CloseIcon />
           </button>
         </div>
-        
+
         <nav aria-labelledby="sidebar-title" className="sidebar-menu">
           <ul className="mobile-nav-list">
             {navItems.map((item) => (

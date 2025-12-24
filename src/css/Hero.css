@@ -399,6 +399,66 @@
   background: linear-gradient(to bottom, #6366f1, #8b5cf6);
 }
 
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .hero {
+    padding: 2rem 1rem 3rem;
+    margin-top: 3rem;
+  }
+
+  .hero-container {
+    gap: 2rem;
+  }
+
+  .hero-content {
+    padding: 2.5rem 2rem;
+  }
+
+  .cta-button {
+    padding: 0.8rem 2rem;
+  }
+
+  .hero-background {
+    opacity: 0.65;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 1.75rem 0.75rem 2.5rem;
+  }
+
+  .hero-intro {
+    text-align: center;
+  }
+
+  .hero-content {
+    padding: 2rem 1.5rem;
+  }
+
+  .section-title {
+    font-size: 1.25rem;
+  }
+
+  .hero-subtitle,
+  .hero-description,
+  .stat-value {
+    text-align: center;
+  }
+
+  .timeline {
+    padding-left: 1rem;
+  }
+
+  .timeline::before {
+    left: 0.25rem;
+  }
+}
+
 .timeline-item {
   position: relative;
   padding-bottom: 2rem;
