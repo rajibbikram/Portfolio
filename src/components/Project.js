@@ -1,7 +1,6 @@
 import React from "react";
 import Link from 'next/link';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
-import "../css/Project.css";
 
 //image import of Ecomarce project
 import Hero from '../../public/image/ecomarce/hero.png';

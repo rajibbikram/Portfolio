@@ -5,7 +5,6 @@ import Profile from "../../public/image/profile.jpg";
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaReact, FaNodeJs, FaDatabase, FaCode, FaCertificate, FaExternalLinkAlt, FaTimes, FaTrophy, FaMedal } from 'react-icons/fa';
 import { SiNextdotjs, SiTailwindcss, SiJavascript, SiHtml5, SiCss3, SiGit } from 'react-icons/si';
-import '../css/About.css';
 
 const About = () => {
     const [selectedCertificate, setSelectedCertificate] = useState(null);
@@ -344,11 +343,7 @@ const About = () => {
                                 alt={`${selectedCertificate.title} Certificate`}
                                 width={800}
                                 height={600}
-                                style={{ 
-                                    objectFit: 'contain',
-                                    maxWidth: '100%',
-                                    height: 'auto'
-                                }}
+                                className="object-contain max-w-full h-auto"
                                 quality={100}
                                 priority
                                 unoptimized={false}
@@ -365,7 +360,7 @@ const About = () => {
                                     className="verify-link"
                                     onClick={(e) => e.stopPropagation()}
                                 >
-                                    Verify Certificate <FaExternalLinkAlt style={{ fontSize: '0.8em' }} />
+                                    Verify Certificate <FaExternalLinkAlt className="text-xs" />
                                 </a>
                             )}
                         </div>

@@ -3,7 +3,6 @@ import { FaLaptopCode, FaGraduationCap, FaCode, FaReact, FaNodeJs, FaDatabase } 
 import { FiAward, FiCode as FiCodeIcon, FiCpu, FiDatabase } from 'react-icons/fi';
 import { useEffect, useRef } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
-import '../css/Hero.css';
 
 const techStack = [
   { name: 'React', icon: <FaReact className="inline mr-1" aria-hidden="true" /> },

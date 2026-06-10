@@ -2,7 +2,6 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import dynamic from 'next/dynamic';
-import "../css/header.css";
 
 // Dynamically import icons with no SSR
 const MenuIcon = dynamic(() => import('@mui/icons-material/Menu'), { ssr: false });
