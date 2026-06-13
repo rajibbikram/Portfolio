@@ -123,6 +123,17 @@ const Hero = () => {
                 </svg>
                 <span className="cta-badge" aria-hidden="true">New</span>
               </a>
+              <a
+                href="/resume.pdf"
+                download
+                className="cta-button cta-button-secondary"
+                aria-label="Download my resume"
+              >
+                <span>Download CV</span>
+                <svg className="cta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+              </a>
             </motion.div>
           </div>
         </motion.article>
